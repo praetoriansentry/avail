@@ -44,7 +44,8 @@ jobs:
             source "$HOME/.cargo/env"
 
             rustup target add aarch64-unknown-linux-gnu
-            sudo apt-get update && sudo apt-get install -y musl-tools clang gcc-aarch64-linux-gnu g++-aarch64-linux-gnu libc6-dev libc6-dev-arm64-cross gcc-multilib
+            # sudo apt-get update && sudo apt-get install -y musl-tools clang gcc-aarch64-linux-gnu g++-aarch64-linux-gnu libc6-dev libc6-dev-arm64-cross gcc-multilib
+            sudo apt-get update && sudo apt-get install -y musl-tools clang libc6-dev libc6-dev-arm64-cross gcc-multilib
             env CARGO_TARGET_AARCH64_UNKNOWN_LINUX_GNU_LINKER=/usr/bin/aarch64-linux-gnu-gcc cargo build --release --target=aarch64-unknown-linux-gnu -p data-avail
             mv target/aarch64-unknown-linux-gnu/release/data-avail target/aarch64-unknown-linux-gnu/release/data-avail-linux-aarch64
             tar czf target/aarch64-unknown-linux-gnu/release/data-avail-linux-aarch64.tar.gz target/aarch64-unknown-linux-gnu/release/data-avail-linux-aarch64
