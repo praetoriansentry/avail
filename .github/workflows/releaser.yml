@@ -42,15 +42,16 @@ jobs:
            run: |
             curl https://sh.rustup.rs -sSf | sh -s -- -y
             source "$HOME/.cargo/env"
-            cargo build --release -p data-avail
-            mv target/release/data-avail target/release/data-avail-linux-amd64
-            tar czf target/release/data-avail-linux-amd64.tar.gz target/release/data-avail-linux-amd64
 
             rustup target add armv7-unknown-linux-gnueabihf
-            apt-get update && sudo apt install -y musl-tools clang gcc-aarch64-linux-gnu g++-aarch64-linux-gnu
+            sudo apt-get update && sudo apt install -y musl-tools clang gcc-aarch64-linux-gnu g++-aarch64-linux-gnu
             env CARGO_TARGET_AARCH64_UNKNOWN_LINUX_GNU_LINKER=/usr/bin/aarch64-linux-gnu-gcc cargo build --release --target=aarch64-unknown-linux-gnu -p data-avail
             mv target/aarch64-unknown-linux-gnu/release/data-avail target/aarch64-unknown-linux-gnu/release/data-avail-linux-aarch64
             tar czf target/aarch64-unknown-linux-gnu/release/data-avail-linux-aarch64.tar.gz target/aarch64-unknown-linux-gnu/release/data-avail-linux-aarch64
+
+            cargo build --release -p data-avail
+            mv target/release/data-avail target/release/data-avail-linux-amd64
+            tar czf target/release/data-avail-linux-amd64.tar.gz target/release/data-avail-linux-amd64
 
          - uses: actions/upload-artifact@v2
            with:
