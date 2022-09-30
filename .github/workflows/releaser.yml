@@ -68,7 +68,7 @@ jobs:
          - uses: actions/upload-artifact@v2
            with:
              name: data-avail-linux-aarch64-tar
-             path: target/release/data-avail-linux-aarch64.tar.gz
+             path: target/aarch64-unknown-linux-gnu/release/data-avail-linux-aarch64.tar.gz
 
 
   # compile all binaries from previous jobs into single release
